@@ -2,7 +2,7 @@ import './App.css';
 import data from './data/data';
 import Courses from './components/Courses/Courses';
 import Cart from './components/Cart/Cart';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const telegram = window.Telegram.WebApp;
 
@@ -36,6 +36,17 @@ function App() {
     telegram.MainButton.text = "Sotib olish";
     telegram.MainButton.show();
   }
+
+  const onSendData = useCallback(() => {
+    telegram.MainButton.hide();
+    telegram.sendData(JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  useEffect(() => {
+    telegram.onEvent('main_button_click', onSendData);
+
+    return () => telegram.offEvent('main_button_click', onSendData);
+  }, [onSendData]);
   return (
     <>
       <h1 className='main__title'>Online Courses</h1>
