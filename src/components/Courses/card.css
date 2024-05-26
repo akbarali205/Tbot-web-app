@@ -1,0 +1,43 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(0, 0, 82);
+    padding: 20px;
+    border: 2px solid red;
+    border-radius: 10px;
+    position: relative;
+}
+.card__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: rgb(227, 112, 30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(20px, -20px) scale(1);
+    transition: all 0.4s ease;
+    font-size: 20px;
+    animation: scale 1s ease infinite;
+    opacity: 0.8;
+}
+.card__badgeHidden {
+    display: none;
+}
+
+@keyframes scale {
+    to {
+        transform: translate(20px, -20px) scale(1.05);
+        opacity: 1;
+    }
+}
+
+.btn__container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
